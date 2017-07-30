@@ -1,0 +1,12 @@
+{
+  "name": "workflows2",
+  "version": "0.0.1",
+  "description": "Sample Workflow Project",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "?.git"
+  },
+  "author": "SDMurphy",
+  "license": "ISC"
+}
