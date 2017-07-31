@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     coffee = require('gulp-coffee'),
     browserify = require('gulp-browserify'),
     compass = require('gulp-compass'),
+    connect = require('gulp-connect'),
     concat = require('gulp-concat');
 
 var coffeeSources = ['components/coffee/tagline.coffee']
@@ -26,6 +27,7 @@ gulp.task('js', function() {
     .pipe(concat('scripts.js'))
     .pipe(browserify())
     .pipe(gulp.dest('builds/development/js'))
+    .pipe(connect.reload())
 });
 
 gulp.task('compass', function() {
@@ -38,6 +40,7 @@ gulp.task('compass', function() {
     })
     .on('error', gutil.log))
     .pipe(gulp.dest('builds/development/css'))
+    .pipe(connect.reload())
 });
 
 gulp.task('watch', function() {
@@ -46,7 +49,13 @@ gulp.task('watch', function() {
   gulp.watch('components/sass/*.scss', ['compass']);
 });
 
-gulp.task('default', ['coffee', 'js', 'compass', 'watch']); // naming this default allows you to simple run "gulp" in the terminal, rather than running each one as "gulp js, gulp-coffee", etc
+gulp.task('connect', function() {
+  connect.server({
+    root: 'builds/development/', // this tells it where the root of the site to load
+    livereload: true // need to add the "reload()" method by piping it at the end of the js and compass task
+  });
+})
+gulp.task('default', ['coffee', 'js', 'compass', 'connect', 'watch']); // naming this default allows you to simple run "gulp" in the terminal, rather than running each one as "gulp js, gulp-coffee", etc
 // test log
 // gulp.task('log', function() {
 //   gutil.log('Workflows are awesome');
