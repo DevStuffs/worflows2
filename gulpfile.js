@@ -46,7 +46,7 @@ gulp.task('watch', function() {
   gulp.watch('components/sass/*.scss', ['compass']);
 });
 
-gulp.task('default', ['coffee', 'js', 'compass']); // naming this default allows you to simple run "gulp" in the terminal, rather than running each one as "gulp js, gulp-coffee", etc
+gulp.task('default', ['coffee', 'js', 'compass', 'watch']); // naming this default allows you to simple run "gulp" in the terminal, rather than running each one as "gulp js, gulp-coffee", etc
 // test log
 // gulp.task('log', function() {
 //   gutil.log('Workflows are awesome');
