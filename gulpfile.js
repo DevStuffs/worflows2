@@ -1,3 +1,4 @@
+// This is the last version of the gulp file before the production ENV updates were made
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     coffee = require('gulp-coffee'),
@@ -71,6 +72,7 @@ gulp.task('json', function() {
 });
 
 gulp.task('default', ['html', 'json', 'coffee', 'js', 'compass', 'connect', 'watch']); // naming this default allows you to simple run "gulp" in the terminal, rather than running each one as "gulp js, gulp-coffee", etc
+
 // test log
 // gulp.task('log', function() {
 //   gutil.log('Workflows are awesome');
