@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat');
 
 var coffeeSources = ['components/coffee/tagline.coffee']
-var JsSources = [
+var jsSources = [
   'components/scripts/rclick.js',
   'components/scripts/pixgrid.js',
   'components/scripts/tagline.js',
@@ -22,7 +22,7 @@ gulp.task('coffee', function() {
 });
 
 gulp.task('js', function() {
-  gulp.src(JsSources)
+  gulp.src(jsSources)
     .pipe(concat('scripts.js'))
     .pipe(browserify())
     .pipe(gulp.dest('builds/development/js'))
@@ -39,6 +39,13 @@ gulp.task('compass', function() {
     .on('error', gutil.log))
     .pipe(gulp.dest('builds/development/css'))
 });
+
+gulp.task('watch', function() {
+  gulp.watch(coffeeSources, ['coffee']); // when something changes in the coffeeSources, then execute 'coffee'
+  gulp.watch(jsSources, ['js']);
+  gulp.watch('components/sass/*.scss', ['compass']);
+});
+
 gulp.task('default', ['coffee', 'js', 'compass']); // naming this default allows you to simple run "gulp" in the terminal, rather than running each one as "gulp js, gulp-coffee", etc
 // test log
 // gulp.task('log', function() {

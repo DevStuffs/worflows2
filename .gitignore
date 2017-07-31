@@ -2,4 +2,5 @@
 node_modules
 .tmp
 .sass-cache
+WorkFlowNOTES-2017.html
 builds/**/images/*
